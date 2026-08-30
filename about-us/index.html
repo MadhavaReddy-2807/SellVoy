@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Sellvoy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #0B0E14;
+      --ink-soft:    #11141C;
+      --paper:       #F7F8F5;
+      --indigo:      #5B6FED;
+      --signal:      #3DDC84;
+      --slate:       #8B92A8;
+      --border:      rgba(255,255,255,0.09);
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.028) 1px, transparent 0);
+      background-size: 24px 24px;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky; top: 0;
+      height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,14,20,0.90);
+      backdrop-filter: blur(14px);
+      z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700;
+      color: var(--paper); text-decoration: none;
+    }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); }
+
+    .nav-home {
+      font-size: 12px; color: var(--slate); text-decoration: none;
+      border: 1px solid var(--border); padding: 6px 16px;
+      border-radius: 6px; transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-home:hover { color: var(--paper); border-color: rgba(255,255,255,0.25); }
+
+    /* ── Container ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    /* ── Tag ── */
+    .tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--indigo);
+      background: rgba(91,111,237,0.09);
+      border: 1px solid rgba(91,111,237,0.20);
+      border-radius: 100px; padding: 5px 13px; margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 14px; color: var(--slate);
+      max-width: 540px; margin: 0 auto 48px;
+    }
+
+    /* ── Screenshot ── */
+    .screenshot {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+      background: var(--ink-soft);
+      margin-bottom: 80px;
+    }
+    .screenshot img { display: block; width: 100%; height: auto; }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 60px;
+    }
+
+    /* ── Features ── */
+    .features-title {
+      font-size: 22px; font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .feature-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: left;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(91,111,237,0.35);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      font-size: 28px; margin-bottom: 14px;
+      display: inline-block; padding: 10px;
+      background: var(--ink-soft);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 10px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 13px; color: var(--slate); line-height: 1.7;
+    }
+
+    /* ── Section Divider with title ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 80px 0 60px;
+    }
+
+    .section-heading {
+      font-size: 22px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--indigo); text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 48px;
+    }
+
+    /* ── Feature Section Block (image + text side by side) ── */
+    .section-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      text-align: left;
+      margin-bottom: 60px;
+    }
+    @media (max-width: 700px) { .section-block { grid-template-columns: 1fr; } }
+
+    .section-block .screenshot {
+      margin-bottom: 0;
+      max-width: 380px;
+    }
+
+    .block-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--signal); text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .block-title {
+      font-size: 20px; font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .block-text {
+      font-size: 13px; color: var(--slate); line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-dot"></div>
+    Sellvoy
+  </a>
+  <a class="nav-home" href="#">Home</a>
+</nav>
+
+<div class="container">
+
+  <!-- ── Hero ── -->
+  <div class="tag">ABOUT US</div>
+  <h1>The Intelligence Engine<br/>for E-Commerce Sales.</h1>
+  <p class="subtitle">
+    We built Sellvoy to eliminate manual prospecting. Discover fresh brands,
+    decode their tech stacks, and pitch with precision.
+  </p>
+
+  <!-- ── Screenshot ── -->
+  <div class="screenshot">
+    <img src="hero-screenshot.png" alt="Sellvoy Dashboard" />
+  </div>
+
+  <!-- ── Divider ── -->
+  <div class="divider"></div>
+
+  <!-- ── Features ── -->
+  <h2 class="features-title">Our Core Operations</h2>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">🗄️</div>
+      <h3>Search Databases</h3>
+      <p>Browse and filter our live index of 1M+ Shopify stores by category, tech stack, location, and Signal Score — updated daily.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Live Scan</h3>
+      <p>Paste any store URL and get a full intelligence report in seconds — tech stack, products, socials, and AI summary on demand.</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════
+       SEARCH DATABASES — DEEP DIVE
+       ══════════════════════════════════ -->
+  <div class="section-divider"></div>
+
+  <div class="section-heading">SEARCH DATABASES</div>
+  <p class="subtitle" style="margin-bottom: 40px;">Browse our live index of 1M+ Shopify stores. Filter by market, category, tech stack, and more — refreshed daily with fresh leads.</p>
+
+  <!-- 1) Voy AI -->
+  <div class="section-block">
+    <div class="screenshot">
+      <img src="voy-ai-screenshot.png" alt="Voy AI — Sellvoy's database filtering assistant" />
+    </div>
+    <div>
+      <div class="block-label">01 — VOY AI</div>
+      <h3 class="block-title">Your AI filtering assistant.</h3>
+      <p class="block-text">
+        Voy AI automatically filters our entire database based on your plain-language prompts.
+        Just describe the leads you're looking for — market, category, age, tech stack — and Voy
+        instantly narrows it down. Once your results are ready, unlock full store details
+        using your credits.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2) Manual Filters -->
+  <div style="text-align: left; margin-bottom: 60px;">
+    <div class="screenshot">
+      <img src="filters-screenshot.png" alt="Sellvoy manual filters — filter by platform, status, market, and pricing" />
+    </div>
+    <div style="margin-top: 24px;">
+      <div class="block-label">02 — MANUAL FILTERS</div>
+      <h3 class="block-title">Apply filters your way.</h3>
+      <p class="block-text">
+        Prefer hands-on control? Use manual filters to narrow down stores by platform, status, market, pricing, catalog size, and more. Combine multiple filters to build the exact lead list you need.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       LIVE SCANNER — DEEP DIVE
+       ══════════════════════════════════ -->
+  <div class="section-divider"></div>
+
+  <div class="section-heading">LIVE SCANNER</div>
+  <p class="subtitle" style="margin-bottom: 40px;">Enter any domain and instantly get all the information behind it — tech stack, apps, social channels, product catalog, contact details, and more.</p>
+  <!-- Screenshot -->
+  <div class="screenshot" style="margin-bottom: 48px;">
+    <img src="livescan-screenshot.png" alt="Sellvoy Live Scanner — scan any domain instantly" />
+  </div>
+
+  <!-- Single Scan & Bulk Scan -->
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="block-label">01 — SINGLE SCAN</div>
+      <h3 class="block-title">Scan one store instantly.</h3>
+      <p class="block-text">
+        Paste any store URL and hit scan. Get a full intelligence report in seconds — tech stack, products, socials, AI summary, and signal score. Each scan costs 1 credit.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="block-label">02 — BULK UPLOAD</div>
+      <h3 class="block-title">Scan hundreds at once.</h3>
+      <p class="block-text">
+        Have a list of domains? Upload them in bulk and let Sellvoy enrich every store automatically. Get full reports for your entire pipeline — delivered and ready to export.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── Contact ── -->
+<div style="border-top: 1px solid rgba(255,255,255,0.09); padding: 48px 24px; text-align: center; margin-top: 40px;">
+  <p style="font-size: 14px; color: #8B92A8; margin-bottom: 12px;">Have questions? Reach out to us.</p>
+  <a href="mailto:team@sellvoy.com" style="font-size: 16px; font-weight: 700; color: #5B6FED; text-decoration: none;">team@sellvoy.com</a>
+</div>
+
+</body>
+</html>
